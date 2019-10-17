@@ -73,11 +73,11 @@ Chay ELK
 -------------------
 Phần quyền thực thi cho file .sh
 >```
->chmod +x real-time-weather/command/starELK.sh
+>chmod +x real-time-weather/command/startELK.sh
 >```
 Chạy script cho ELK
 >```
->./real-time-weather/command/starELK.sh
+>./real-time-weather/command/startELK.sh
 >```
 
 Dùng ELK
@@ -138,11 +138,11 @@ Chay Filebeat
 -------------------
 Phần quyền thực thi cho file .sh
 >```
->chmod +x real-time-weather/command/starFilebeat.sh
+>chmod +x real-time-weather/command/startFilebeat.sh
 >```
 Chạy script cho Filebeat
 >```
->./real-time-weather/command/starFilebeat.sh
+>./real-time-weather/command/startFilebeat.sh
 >```
 
 Dùng Filebeat
