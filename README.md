@@ -19,6 +19,7 @@
 ## Cấu hình Ambari
 ![](img/AmbariSetup.png "Cấu hình Ambari")
 
+
 # Master
 Cấu hình:
 ----------------
@@ -90,6 +91,14 @@ Chạy script cho ELK
 >```
 >./real-time-weather/command/stopELK.sh
 >```
+
+Kiểm tra Kafka:
+----------------------------------------
+>/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh `\`\
+>--bootstrap-server 10.255.255.6:6667 `\`\
+>--topic weather `\`\
+>--from-beginning
+
 
 # Slave
 Cấu hình:
@@ -174,7 +183,9 @@ Thực thi lấy thông thời tiết theo thời gian thực:
 >```
 >pip install -r requirements.txt
 >```
-### Bước 3: Cài đặt nơi muốn lấy nhiệt độ
+### Bước 3: Cài đặt key API và nơi lấy nhiệt độ
+> Chú ý: Đây là các key API miễn phí nên có hạng chế (60 lần / phút). \
+> (https://openweathermap.org/price)
 
 ![](img/PythonSetup.png "Cài đặt nơi lấy thông tin nhiệt độ")
 
@@ -183,10 +194,15 @@ Thực thi lấy thông thời tiết theo thời gian thực:
 >python main.py
 >```
 
+
 Kết quả lấy thông tin thời tiết qua API:
 ----------------------------------------
 ![](img/GetAPIWether.png "Thông tin thời tiết")
 
+
+Kiểm tra Filebeat:
+----------------------------------------
+sudo /usr/bin/filebeat -c /etc/filebeat/filebeat.yml -e -d '*'
 
 ## Thông tin thời tiết theo thời gian thực
 ![](img/LogstashWeather.png "Thông tin thời tiết theo thời gian thực")
