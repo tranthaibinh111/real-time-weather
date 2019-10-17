@@ -138,33 +138,34 @@ Chay Filebeat
 -------------------
 Phần quyền thực thi cho file .sh
 >```
->chmod +x real-time-weather/command/startFilebeat.sh
+>chmod +x real-time-weather/command/startFileBeat.sh
 >```
 Chạy script cho Filebeat
 >```
->./real-time-weather/command/startFilebeat.sh
+>./real-time-weather/command/startFileBeat.sh
 >```
 
 Dùng Filebeat
 -------------------
 Phần quyền thực thi cho file .sh
 >```
->chmod +x real-time-weather/command/stopFilebeat.sh
+>chmod +x real-time-weather/command/stopFileBeat.sh
 >```
 Chạy script cho Filebeat
 >```
->./real-time-weather/command/stopFilebeat.sh
+>./real-time-weather/command/stopFileBeat.sh
 >```
 
 Thực thi lấy thông thời tiết theo thời gian thực:
 -------------------------------------------------
 ### Bước 1: Chạy môi trường virtualenv
 >```
->source real-time-weather/weather/venv/bin/activate
+>cd real-time-weather/weather
+>source venv/bin/activate
 >```
 ### Bước 2: Cài đặt các thư viện cho python
 >```
->pip install -r real-time-weather/weather/requirements.txt
+>pip install -r requirements.txt
 >```
 ### Bước 3: Cài đặt nơi muốn lấy nhiệt độ
 
@@ -172,7 +173,7 @@ Thực thi lấy thông thời tiết theo thời gian thực:
 
 ### Bước 4: Python lấy thông tin thời tiết qua API
 >```
->python real-time-weather/weather/main.py
+>python main.py
 >```
 
 Kết quả lấy thông tin thời tiết qua API:
