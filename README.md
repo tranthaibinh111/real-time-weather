@@ -120,6 +120,13 @@ Cấu hình:
 >  json.add_error_key: true
 >  json.message_key: log
 >```
+> Comment output.elasticsearch
+>```
+>#--------------------------- Elasticsearch output -------------------------
+>#output.elasticsearch:
+>  # Array of hosts to connect to.
+>  #hosts: ["10.255.255.6:6667"]
+>```
 > Thiết lập dữ liệu đầu ra. \
 > https://www.elastic.co/guide/en/beats/filebeat/master/kafka-output.html
 >```
