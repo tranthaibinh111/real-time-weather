@@ -162,9 +162,17 @@ Thực thi lấy thông thời tiết theo thời gian thực:
 >```
 >source real-time-weather/weather/venv/bin/activate
 >```
-### Bước 2: Python lấy thông tin thời tiết qua API
+### Bước 2: Cài đặt các thư viện cho python
 >```
->python main.py
+>pip install -r real-time-weather/weather/requirements.txt
+>```
+### Bước 3: Cài đặt nơi muốn lấy nhiệt độ
+
+![](img/PythonSetup.png "Cài đặt nơi lấy thông tin nhiệt độ")
+
+### Bước 4: Python lấy thông tin thời tiết qua API
+>```
+>python real-time-weather/weather/main.py
 >```
 
 Kết quả lấy thông tin thời tiết qua API:
