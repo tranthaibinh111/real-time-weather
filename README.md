@@ -72,7 +72,7 @@ Chạy script download các thư viên ELK
 
 Khởi tạo topic trong Kafka:
 ---------------------------
->bin/kafka-topics.sh --create \ \
+>/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create \ \
 >    --zookeeper localhost:2181 \ \
 >    --replication-factor 1 \ \
 >    --partitions 1 \ \
