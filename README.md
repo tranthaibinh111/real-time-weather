@@ -70,6 +70,21 @@ Chạy script download các thư viên ELK
 >```
 > Tham khảo tại **config/logstash.conf**
 
+Khởi tạo topic trong Kafka:
+---------------------------
+>bin/kafka-topics.sh --create \ \
+>    --zookeeper localhost:2181 \ \
+>    --replication-factor 1 \ \
+>    --partitions 1 \ \
+>    --topic weather
+
+Kiểm tra Kafka:
+----------------------------------------
+>/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh \ \
+>    --bootstrap-server 10.255.255.6:6667 \ \
+>    --topic weather \ \
+>    --from-beginning
+
 Chay ELK
 -------------------
 Phần quyền thực thi cho file .sh
@@ -91,13 +106,6 @@ Chạy script cho ELK
 >```
 >./real-time-weather/command/stopELK.sh
 >```
-
-Kiểm tra Kafka:
-----------------------------------------
->/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh `\`\
->--bootstrap-server 10.255.255.6:6667 `\`\
->--topic weather `\`\
->--from-beginning
 
 
 # Slave
