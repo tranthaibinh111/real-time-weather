@@ -20,6 +20,9 @@ city = "Ha+Noi,+VN"
 
 # Lay tho tin thoi tiet
 while True:
-    response = requests.get("{}?q={}&appid={}".format(weather_api, city, key))
-    print(response.text)
-    logging.info(response.text)
+    try:
+        response = requests.get("{}?q={}&appid={}".format(weather_api, city, key))
+        print(response.text)
+        logging.info(response.text)        
+    except Exception as ex:
+        print(ex)
