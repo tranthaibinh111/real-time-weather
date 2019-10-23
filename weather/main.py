@@ -1,10 +1,15 @@
 import logging
 import requests
 
+filename = 'log/ha_noi.log'
+#filename = 'log/ho_chi_minh.log'
+#filename = 'log/cu_chi.log'
+#filename = 'log/bac_lieu.log'
+
 # Cai dat Log
 logging.basicConfig(level = logging.INFO,
                     format='%(message)s',
-                    filename='log/weather_information.log')
+                    filename=filename)
 
 # Thong tin weather api
 weather_api = "http://api.openweathermap.org/data/2.5/weather"
@@ -23,6 +28,6 @@ while True:
     try:
         response = requests.get("{}?q={}&appid={}".format(weather_api, city, key))
         print(response.text)
-        logging.info(response.text)        
+        logging.info(response.text)
     except Exception as ex:
         print(ex)
