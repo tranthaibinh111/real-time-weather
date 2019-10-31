@@ -1,5 +1,11 @@
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/discovery-settings.html
+cluster.name: real-time-weather
+
+node.name: slave1
+
 network.host: 10.255.255.7
 http.port: 9200
 
-# https://www.elastic.co/guide/en/elasticsearch/reference/current/discovery-settings.html
-cluster.initial_master_nodes: ["10.255.255.7"]
+discovery.seed_hosts: ["10.255.255.7", "10.255.255.9", "10.255.255.10"]
+
+cluster.initial_master_nodes: ["10.255.255.9"]

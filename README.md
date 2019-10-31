@@ -37,10 +37,16 @@ Chạy script cài đặt
 
 ### Bước 2: Cấu hình Elasticsearch tại /etc/elasticsearch/elasticsearch.yml
 >```
+>cluster.name: real-time-weather
+>
+>node.name: slave1
+>
 >network.host: 10.255.255.7
 >http.port: 9200
 >
->cluster.initial_master_nodes: ["10.255.255.7"]
+>discovery.seed_hosts: ["10.255.255.7", "10.255.255.9", "10.255.255.10"]
+>
+>cluster.initial_master_nodes: ["10.255.255.9"]
 >```
 >Tham khảo tại **config/elasticsearch.yml**
 
@@ -95,6 +101,14 @@ Chạy script cài đặt
 >./real-time-weather/command/setup-slave2.sh
 >```
 
+### Bước 2: Cấu hình Kibana tại /etc/kibana/kibana.yml
+>```
+>server.port: 5601
+>
+>elasticsearch.hosts: ["http://10.255.255.9:9200"]
+>```
+
+
 
 # Slave3
 Cấu hình:
@@ -109,7 +123,22 @@ Chạy script cài đặt
 >./real-time-weather/command/setup-slave3.sh
 >```
 
-### Bước 1: Cấu hình Logstash
+### Bước 2: Cấu hình Elasticsearch tại /etc/elasticsearch/elasticsearch.yml
+>```
+>cluster.name: real-time-weather
+>
+>node.name: slave3
+>
+>network.host: 10.255.255.9
+>http.port: 9200
+>
+>discovery.seed_hosts: ["10.255.255.7", "10.255.255.9", "10.255.255.10"]
+>
+>cluster.initial_master_nodes: ["10.255.255.9"]
+>```
+>Tham khảo tại **config/elasticsearch.yml**
+
+### Bước 3: Cấu hình Logstash
 >```
 >sudo vim /etc/logstash/conf.d/weather.conf
 >```
@@ -138,7 +167,7 @@ Chạy script cài đặt
 >```
 > Tham khảo tại **config/logstash.conf**
 
-### Bước 3: Cấu hình Filebeat
+### Bước 4: Cấu hình Filebeat
 >```
 >sudo vim /etc/filebeat/filebeat.yml
 >```
@@ -189,7 +218,22 @@ Cấu hình:
 >./real-time-weather/command/setup-slave4.sh
 >```
 
-### Bước 2: Cấu hình Filebeat
+### Bước 2: Cấu hình Elasticsearch tại /etc/elasticsearch/elasticsearch.yml
+>```
+>cluster.name: real-time-weather
+>
+>node.name: slave4
+>
+>network.host: 10.255.255.10
+>http.port: 9200
+>
+>discovery.seed_hosts: ["10.255.255.7", "10.255.255.9", "10.255.255.10"]
+>
+>cluster.initial_master_nodes: ["10.255.255.9"]
+>```
+>Tham khảo tại **config/elasticsearch.yml**
+
+### Bước 3: Cấu hình Filebeat
 >```
 >sudo vim /etc/filebeat/filebeat.yml
 >```
@@ -236,13 +280,6 @@ Khởi tạo topic trong Kafka tại Master:
 >    --partitions 1 \ \
 >    --topic weather
 
-Kiểm tra Kafka:
-----------------------------------------
->/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh \ \
->    --bootstrap-server 10.255.255.6:6667 \ \
->    --topic weather \ \
->    --from-beginning
-
 Lấy thông thời tiết theo thời gian thực tại Slave1, Slave3, Slave 4:
 --------------------------------------------------------------------
 ### Bước 1: Chạy môi trường virtualenv
@@ -269,6 +306,7 @@ Kết quả lấy thông tin thời tiết qua API:
 ----------------------------------------
 ![](img/GetAPIWether.png "Thông tin thời tiết")
 
+
 Chay Filebeat
 -------------------
 Phần quyền thực thi cho file .sh
@@ -282,9 +320,20 @@ Chạy script
 
 Kiểm tra Filebeat:
 ----------------------------------------
-sudo /usr/bin/filebeat -c /etc/filebeat/filebeat.yml -e -d '*'
+>sudo /usr/bin/filebeat -c /etc/filebeat/filebeat.yml -e -d '*'
+![](img/TestFilebeat.png "Test Filebeat")
 
-Khởi động Elasticsearch tại Slave1:
+
+Kiểm tra Kafka:
+----------------------------------------
+>/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh \ \
+>    --bootstrap-server 10.255.255.6:6667 \ \
+>    --topic weather \ \
+>    --from-beginning
+![](img/TestKafka.png "Test Kafka")
+
+
+Khởi động Elasticsearch tại Slave1, Slave3, Slave4:
 --------------------------------------------------------------------
 Phần quyền thực thi cho file .sh
 >```
@@ -294,6 +343,13 @@ Chạy script
 >```
 >./real-time-weather/command/startElasticsearch.sh
 >```
+### Chú ý: Khởi động master trước sau đó tới 2 node data. 
+Kiểm tra Elasticsearch:
+----------------------------------------
+>curl http://10.255.255.9:9200/_cat/health?v \
+>curl http://10.255.255.7:9200/_cat/nodes?v
+![](img/TestElasticsearch.png "Test Elasticsearch")
+
 
 Khởi động Logstash tại Slave2:
 -------------------
@@ -305,6 +361,7 @@ Chạy script
 >```
 >./real-time-weather/command/startLogstash.sh
 >```
+
 
 Khởi động Kibana tại Slave3:
 -------------------
@@ -319,7 +376,8 @@ Chạy script
 
 
 ## Thông tin thời tiết theo thời gian thực
-![](img/LogstashWeather.png "Thông tin thời tiết theo thời gian thực")
+![](img/LogstashWeather.png "Thông tin thời tiết theo thời gian thực") 
+![](img/KibanaMonitoring.png "Thông tin Elasticsearch")
 
 # Một số lệnh khác
 Dừng Filebeat
