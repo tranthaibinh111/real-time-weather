@@ -161,7 +161,7 @@ Chạy script cài đặt
 >    elasticsearch {
 >        hosts => ["10.255.255.7:9200"]
 >        manage_template => false
->        index => "weather"
+>        index => "weather-%{+YYYY.MM.dd}"
 >    }
 >}
 >```
