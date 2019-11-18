@@ -351,7 +351,7 @@ Kiểm tra Elasticsearch:
 ![](img/TestElasticsearch.png "Test Elasticsearch")
 
 
-Khởi động Logstash tại Slave2:
+Khởi động Logstash tại Slave3:
 -------------------
 Phần quyền thực thi cho file .sh
 >```
@@ -363,7 +363,7 @@ Chạy script
 >```
 
 
-Khởi động Kibana tại Slave3:
+Khởi động Kibana tại Slave2:
 -------------------
 Phần quyền thực thi cho file .sh
 >```
