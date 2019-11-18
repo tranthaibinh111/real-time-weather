@@ -113,7 +113,7 @@ Chạy script cài đặt
 # Slave3
 Cấu hình:
 ----------------
-### Bước 1: Cài đặt các thư viện (JAVA, Python Virtualenv, Logstash, Filebeat)
+### Bước 1: Cài đặt các thư viện (JAVA, Python Virtualenv, Elasticsearch, Logstash, Filebeat)
 Phần quyền thực thi cho file .sh
 >```
 >chmod +x real-time-weather/command/setup-slave3.sh
@@ -208,7 +208,7 @@ Chạy script cài đặt
 # Slave4
 Cấu hình:
 ----------------
-### Bước 1: Cài đặt các thư viện (JAVA, Python Virtualenv, Filebeat)
+### Bước 1: Cài đặt các thư viện (JAVA, Python Virtualenv, Elasticsearch, Filebeat)
 >Phân quyền thực thi cho file .sh
 >```
 >chmod +x real-time-weather/command/setup-slave4.sh
