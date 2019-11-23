@@ -1,5 +1,4 @@
 import logging
-import json
 import requests
 
 filename = 'log/ha_noi.log'
@@ -28,29 +27,7 @@ city = "Ha+Noi,+VN"
 while True:
     try:
         response = requests.get("{}?q={}&appid={}".format(weather_api, city, key))
-        data = json.loads(response.text)
-        # Them file location
-        # Ha Noi - Ho Hoang Kiem
-        data["location"]= {
-            "lat": 21.0287747,
-            "lon": 105.850176
-        }
-        # # Ho Chi Minh - Vinh Doc Lap
-        # data["location"]= {
-        #     "lat": 10.7757667,
-        #     "lon": 106.6904795
-        # }
-        # # Cu Chi - Di tich lich su dia dao Cu Chi
-        # data["location"]= {
-        #     "lat": 11.1426773,
-        #     "lon": 106.4529894
-        # }
-        # # Bac Lieu - Khach san cong tu Bac Lieu
-        # data["location"]= {
-        #     "lat": 9.2840549,
-        #     "lon": 105.7217148
-        # }
-        print(data)
-        logging.info(str(data))
+        print(response.text)
+        logging.info(response.text)
     except Exception as ex:
         print(ex)
