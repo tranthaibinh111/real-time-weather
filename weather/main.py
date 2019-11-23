@@ -31,22 +31,22 @@ while True:
         data = json.loads(response.text)
         # Them file location
         # Ha Noi - Ho Hoang Kiem
-        data.text["location"]= {
+        data["location"]= {
             "lat": 21.0287747,
             "lon": 105.850176
         }
         # # Ho Chi Minh - Vinh Doc Lap
-        # data.text["location"]= {
+        # data["location"]= {
         #     "lat": 10.7757667,
         #     "lon": 106.6904795
         # }
         # # Cu Chi - Di tich lich su dia dao Cu Chi
-        # data.text["location"]= {
+        # data["location"]= {
         #     "lat": 11.1426773,
         #     "lon": 106.4529894
         # }
         # # Bac Lieu - Khach san cong tu Bac Lieu
-        # data.text["location"]= {
+        # data["location"]= {
         #     "lat": 9.2840549,
         #     "lon": 105.7217148
         # }
