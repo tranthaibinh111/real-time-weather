@@ -27,6 +27,27 @@ city = "Ha+Noi,+VN"
 while True:
     try:
         response = requests.get("{}?q={}&appid={}".format(weather_api, city, key))
+        # Them file location
+        # Ha Noi - Ho Hoang Kiem
+        response['location']= {
+            "lat": 21.0287747,
+            "lon": 105.850176
+        }
+        # # Ho Chi Minh - Vinh Doc Lap
+        # response['location']= {
+        #     "lat": 10.7757667,
+        #     "lon": 106.6904795
+        # }
+        # # Cu Chi - Di tich lich su dia dao Cu Chi
+        # response['location']= {
+        #     "lat": 11.1426773,
+        #     "lon": 106.4529894
+        # }
+        # # Bac Lieu - Khach san cong tu Bac Lieu
+        # response['location']= {
+        #     "lat": 9.2840549,
+        #     "lon": 105.7217148
+        # }
         print(response.text)
         logging.info(response.text)
     except Exception as ex:
